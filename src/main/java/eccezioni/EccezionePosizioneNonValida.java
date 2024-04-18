@@ -8,6 +8,7 @@ package eccezioni;
  *
  * @author gian
  */
-public class EccezionePosizioneNonValida extends Exception{
+public class EccezionePosizioneNonValida extends Exception
+{
     
 }

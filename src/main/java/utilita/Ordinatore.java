@@ -4,327 +4,266 @@
  */
 package utilita;
 
-import com.mycompany._libreria_4b.Libro;
+import com.mycompany._progettolibreria_4a.Libro;
 
 /**
- * Classe che contierne metodi statici 
- * per ordianre dei vettori
+ *
  * @author gian
  */
 public class Ordinatore 
 {
     /**
-     * Scambia fra di loro gli elementi
-     * in posizione pos1 e in  posizione pos2
-     * di un array di interi v
-     * @param v 
-     * @param pos1 
+     * Scambia il valore in posizione pos1 con
+     * il valore in posizione pos2 
+     * dell' array di interi a
+     * @param a
+     * @param pos1
      * @param pos2 
      */
-    public static void scambia(int[] v, int pos1,int pos2)
+    public static void scambia(int[] a, int pos1, int pos2)
     {
-        int sost;
-        sost=v[pos1];
-        v[pos1]=v[pos2];
-        v[pos2]=sost;
+        int s;
+        s=a[pos1];
+        a[pos1]=a[pos2];
+        a[pos2]=s;
+    }
+    
+    
+     /**
+     * Scambia il valore in posizione pos1 con
+     * il valore in posizione pos2 
+     * dell' array di stringhe a
+     * @param a
+     * @param pos1
+     * @param pos2 
+     */
+    public static void scambia(String[] a, int pos1, int pos2)
+    {
+        String s;
+        s=a[pos1];
+        a[pos1]=a[pos2];
+        a[pos2]=s;
+    }
+    
+    
+    /**
+     * Scambia il libro in posizione pos1 con
+     * il libro in posizione pos2 
+     * dell' array di libri a
+     * @param a
+     * @param pos1
+     * @param pos2 
+     */
+    public static void scambiaLibri(Libro[] a, int pos1, int pos2)
+    {
+        Libro s;
+        s=a[pos1];
+        a[pos1]=a[pos2];
+        a[pos2]=s;
     }
     
     /**
+     * Ordina in ordine crescente gli elementi
+     * di un array di interi utilizzando l'algoritmo
+     * selection sort
      * 
-     * Scambia fra di loro gli elementi
-     * in posizione pos1 e in  posizione pos2
-     * di un array di stringhe v
-     * @param v 
-     * @param pos1 
-     * @param pos2 
+     * @param a l'array da ordinare
+     * @return  una copia dell'array ordinato
      */
-    public static void scambia(String[] v, int pos1,int pos2)
+    public static int[] selectionSortCrescente (int[] a)
     {
-        String sost;
-        sost=v[pos1];
-        v[pos1]=v[pos2];
-        v[pos2]=sost;
-    }
-    
-    /**
-     * Restituisce una copia ordinata 
-     * in ordine crescente di un vettore
-     * v utilizzando l'algoritmo selction sort
-     * @param v il vettore da ordinare
-     * @return il vettore in ordine crescente
-     */
-    public static int[] selectionSortCrescente(int[] v)
-    {
+        int v[]= new int[a.length];
         int lunghezza=v.length;
-        //Creo una copia di v e lo chiamo vOrdinato
-        int[] vOrdinato=new int[lunghezza];
-        for(int i=0;i<lunghezza;i++)
-            vOrdinato[i]=v[i];
+        //creo una copia di a
+        for(int i=0;i<v.length;i++)
+        {
+            v[i]=a[i];
+        }
         
-        for(int i=0;i<lunghezza-1;i++)
+        for (int i=0;i<lunghezza-1;i++)
         {
             for(int j=i+1;j<lunghezza;j++)
             {
-                if (vOrdinato[j]<vOrdinato[i])
-                    scambia(vOrdinato, i, j);
+                if (v[j]<v[i])
+                    scambia(v, i, j);
             }
-        }
-       return vOrdinato;
-    }
-    
-    /**
-     * Restituisce una copia ordinata 
-     * in ordine decrescente di un vettore
-     * v utilizzando l'algoritmo selction sort
-     * @param v il vettore da ordinare
-     * @return il vettore in ordine decrescente
-     */
-    public static int[] selectionSortDecrescente(int[] v)
-    {
-        int lunghezza=v.length;
-        //Creo una copia di v e lo chiamo vOrdinato
-        int[] vOrdinato=new int[lunghezza];
-        for(int i=0;i<lunghezza;i++)
-            vOrdinato[i]=v[i];
-        
-        for(int i=0;i<lunghezza-1;i++)
-        {
-            for(int j=i+1;j<lunghezza;j++)
-            {
-                if (vOrdinato[j]>vOrdinato[i])
-                    scambia(vOrdinato, i, j);
-            }
-        }
-       return vOrdinato;
+        }       
+        return v;    
     }
     
     
     /**
-     * Restituisce una copia ordinata 
-     * in ordine alfabetico crescente di un vettore
-     * di stringhe v utilizzando l'algoritmo selction sort
-     * @param v il vettore da ordinare
-     * @return il vettore in ordine crescente
+     * Ordina in ordine decrescente gli elementi
+     * di un array di interi utilizzando l'algoritmo
+     * selection sort
+     * 
+     * @param a l'array da ordinare
+     * @return  una copia dell'array ordinato
      */
-    public static String[] selectionSortCrescente(String[] v)
+    public static int[] selectionSortDecrescente (int[] a)
     {
+        int v[]= new int[a.length];
         int lunghezza=v.length;
-        //Creo una copia di v e lo chiamo vOrdinato
-        String[] vOrdinato=new String[lunghezza];
-        for(int i=0;i<lunghezza;i++)
-            vOrdinato[i]=v[i];
+        //creo una copia di a
+        for(int i=0;i<v.length;i++)
+        {
+            v[i]=a[i];
+        }
         
-        for(int i=0;i<lunghezza-1;i++)
+        for (int i=0;i<lunghezza-1;i++)
         {
             for(int j=i+1;j<lunghezza;j++)
             {
-                if (vOrdinato[j].compareToIgnoreCase(vOrdinato[i])<0)
-                    scambia(vOrdinato, i, j);
+                if (v[j]>v[i])
+                    scambia(v, i, j);
             }
-        }
-       return vOrdinato;
+        }       
+        return v;    
     }
-    
-      /**
-     * Restituisce una copia ordinata 
-     * in ordine alfabetico decrescente di un vettore
-     * di stringhe v utilizzando l'algoritmo selction sort
-     * @param v il vettore da ordinare
-     * @return il vettore in ordine decrescente
-     */
-    public static String[] selectionSortDecrescente(String[] v)
-    {
-        int lunghezza=v.length;
-        //Creo una copia di v e lo chiamo vOrdinato
-        String[] vOrdinato=new String[lunghezza];
-        for(int i=0;i<lunghezza;i++)
-            vOrdinato[i]=v[i];
-        
-        for(int i=0;i<lunghezza-1;i++)
-        {
-            for(int j=i+1;j<lunghezza;j++)
-            {
-                if (vOrdinato[j].compareToIgnoreCase(vOrdinato[i])>0)
-                    scambia(vOrdinato, i, j);
-            }
-        }
-       return vOrdinato;
-    }
-    
-    //BUBBLE SORT
-        /**
-         * Ordinamento crescente con bubble sort di un array di interi
-         * @param a l'array ordinato
-         * @return 
-         */
-        public static int[] bubbleSortCrescente(int[] a)
-        {
-            
-            boolean scambioAvvenuto;
-            int N=a.length;
-            int[] ordinato=new int[N];
-            //copio i valori di a nel nuovo vettore
-            for (int i=0;i<N;i++)
-            {
-                ordinato[i]=a[i];
-            }
-            //Bubble sort
-            do 
-            {
-                scambioAvvenuto=false;
-                
-                for(int i=0;i<N-1;i++)
-                {
-                    if (ordinato[i]>ordinato[i+1])
-                    {
-                        scambia(ordinato, i, i+1);
-                        scambioAvvenuto=true;
-                    }
-                }
-            }while (scambioAvvenuto);
-           return ordinato; 
-        } 
-        
-        /**
-         * Ordinamento decrescente con bubble sort di un array di interi
-         * @param a l'array ordinato
-         * @return 
-         */
-        public static int[] bubbleSortDecrescente(int[] a)
-        {
-            
-            boolean scambioAvvenuto;
-            int N=a.length;
-            int[] ordinato=new int[N];
-            //copio i valori di a nel nuovo vettore
-            for (int i=0;i<N;i++)
-            {
-                ordinato[i]=a[i];
-            }
-            //Bubble sort
-            do 
-            {
-                scambioAvvenuto=false;
-                
-                for(int i=0;i<N-1;i++)
-                {
-                    if (ordinato[i]<ordinato[i+1])
-                    {
-                        scambia(ordinato, i, i+1);
-                        scambioAvvenuto=true;
-                    }
-                }
-            }while (scambioAvvenuto);
-           return ordinato; 
-        } 
-       
-    /**
-         * Ordinamento crescente con bubble sort di un array di stringhe
-         * @param a l'array ordinato
-         * @return 
-         */
-        public static String[] bubbleSortCrescente(String[] a)
-        {
-            
-            boolean scambioAvvenuto;
-            int N=a.length;
-            String[] ordinato=new String[N];
-            //copio i valori di a nel nuovo vettore
-            for (int i=0;i<N;i++)
-            {
-                ordinato[i]=a[i];
-            }
-            //Bubble sort
-            do 
-            {
-                scambioAvvenuto=false;
-                
-                for(int i=0;i<N-1;i++)
-                {
-                    if (ordinato[i].compareTo(ordinato[i+1])>0)
-                    {
-                        scambia(ordinato, i, i+1);
-                        scambioAvvenuto=true;
-                    }
-                }
-            }while (scambioAvvenuto);
-           return ordinato; 
-        } 
-        
-        
-        /**
-         * Ordinamento decrescente con bubble sort di un array di stringhe
-         * @param a l'array ordinato
-         * @return 
-         */
-        public static String[] bubbleSortDecrescente(String[] a)
-        {
-            
-            boolean scambioAvvenuto;
-            int N=a.length;
-            String[] ordinato=new String[N];
-            //copio i valori di a nel nuovo vettore
-            for (int i=0;i<N;i++)
-            {
-                ordinato[i]=a[i];
-            }
-            //Bubble sort
-            do 
-            {
-                scambioAvvenuto=false;
-                
-                for(int i=0;i<N-1;i++)
-                {
-                    if (ordinato[i].compareTo(ordinato[i+1])<0)
-                    {
-                        scambia(ordinato, i, i+1);
-                        scambioAvvenuto=true;
-                    }
-                }
-            }while (scambioAvvenuto);
-           return ordinato; 
-        } 
-        
+   
      /**
-     * Scambia fra di loro gli elementi
-     * in posizione pos1 e in  posizione pos2
-     * di un array di libri v
-     * @param v 
-     * @param pos1 
-     * @param pos2 
+     * Ordina in ordine crescente gli elementi
+     * di un array di stringhe utilizzando l'algoritmo
+     * selection sort
+     * 
+     * @param a l'array da ordinare
+     * @return  una copia dell'array ordinato
      */
-    public static void scambia(Libro[] v, int pos1,int pos2)
+    public static String[] selectionSortCrescente (String[] a)
     {
-        Libro sost;
-        sost=v[pos1];
-        v[pos1]=v[pos2];
-        v[pos2]=sost;
-    }
-    
-     /**
-     * Restituisce una copia ordinata 
-     * in ordine alfabetico di titolo di un vettore
-     * di libri v utilizzando l'algoritmo selction sort
-     * @param v il vettore da ordinare
-     * @return il vettore in ordine crescente
-     */
-    public static Libro[] ordinaLibriCrescente(Libro[] v)
-    {
+        String v[]= new String[a.length];
         int lunghezza=v.length;
-        //Creo una copia di v e lo chiamo vOrdinato
-        Libro[] vOrdinato=new Libro[lunghezza];
-        for(int i=0;i<lunghezza;i++)
-            vOrdinato[i]=v[i];
+        //creo una copia di a
+        for(int i=0;i<v.length;i++)
+        {
+            v[i]=a[i];
+        }
         
-        for(int i=0;i<lunghezza-1;i++)
+        for (int i=0;i<lunghezza-1;i++)
         {
             for(int j=i+1;j<lunghezza;j++)
             {
-                if (vOrdinato[i].getTitolo().compareToIgnoreCase(vOrdinato[j].getTitolo())>0)
-                    scambia(vOrdinato, i, j);
+                if (v[j].compareTo(v[i])<0)
+                    scambia(v, i, j);
             }
-        }
-       return vOrdinato;
+        }       
+        return v;    
     }
+    
+    
+    /**
+     * Ordina in ordine decrescente gli elementi
+     * di un array di stringhe utilizzando l'algoritmo
+     * selection sort
+     * 
+     * @param a l'array da ordinare
+     * @return  una copia dell'array ordinato
+     */
+    public static String[] selectionSortDecrescente (String[] a)
+    {
+        String v[]= new String[a.length];
+        int lunghezza=v.length;
+        //creo una copia di a
+        for(int i=0;i<v.length;i++)
+        {
+            v[i]=a[i];
+        }
+        
+        for (int i=0;i<lunghezza-1;i++)
+        {
+            for(int j=i+1;j<lunghezza;j++)
+            {
+                if (v[j].compareTo(v[i])>0)
+                    scambia(v, i, j);
+            }
+        }       
+        return v;    
+    }
+    
+    
+    public static int[] bubbleSortCrescente(int[] a)
+    {
+        int v[]= new int[a.length];
+        int lunghezza=v.length;
+        boolean scambioAvvenuto;
+        //creo una copia di a
+        for(int i=0;i<v.length;i++)
+        {
+            v[i]=a[i];
+        }
+        
+        do
+        {
+            scambioAvvenuto=false;
+            for(int i=0;i<lunghezza-1;i++)
+            {
+                if (v[i]>v[i+1])
+                {
+                    scambia(v, i, i+1);
+                    scambioAvvenuto=true;
+                }
+            }
+        }while (scambioAvvenuto);
+        return v;
+    }
+    
+     public static int[] bubbleSortDecrescente(int[] a)
+    {
+        int v[]= new int[a.length];
+        int lunghezza=v.length;
+        boolean scambioAvvenuto;
+        
+        //creo una copia di a
+        for(int i=0;i<v.length;i++)
+        {
+            v[i]=a[i];
+        }
+        
+        do
+        {
+            scambioAvvenuto=false;
+            for(int i=0;i<lunghezza-1;i++)
+            {
+                if (v[i]>v[i+1])
+                {
+                    scambia(v, i, i+1);
+                    scambioAvvenuto=true;
+                }
+            }
+        }while (scambioAvvenuto);
+        return v;
+    }
+     
+     
+     
+     
+     /**
+     * Ordina in ordine alfabetico di titolo gli elementi
+     * di un array di Libri utilizzando l'algoritmo
+     * selection sort
+     * 
+     * @param a l'array da ordinare
+     * @return  una copia dell'array ordinato
+     */
+    public static Libro[] selectionSortCrescenteLibri (Libro[] a)
+    {
+        Libro v[]= new Libro[a.length];
+        int lunghezza=v.length;
+        //creo una copia di a
+        for(int i=0;i<v.length;i++)
+        {
+            v[i]= new Libro(a[i]);      
+        }
+        
+        for (int i=0;i<lunghezza-1;i++)
+        {
+            for(int j=i+1;j<lunghezza;j++)
+            {
+                if (v[j].getTitolo().compareToIgnoreCase(v[i].getTitolo())<0)
+                    scambiaLibri(v, i, j);
+            }
+        }       
+        return v;    
+    } 
     
 }
