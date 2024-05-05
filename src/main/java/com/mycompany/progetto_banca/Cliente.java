@@ -15,6 +15,7 @@ public class Cliente {
     private int ID;
     private static double commissione=0.5;
 
+
     public Cliente(String nome, String cognome, int ID) {
         this.nome = nome;
         this.cognome = cognome;
