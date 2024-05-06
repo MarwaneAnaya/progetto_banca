@@ -19,7 +19,7 @@ public class Movimenti {
     public Movimenti() {
         movimenti = new Cliente[NUM_MAX_MOVIMENTI];
     }
-
+ 
     public Movimenti(Movimenti m) throws EccezionePosizioneNonValida {
         movimenti = new Cliente[NUM_MAX_MOVIMENTI];
         Cliente c;
