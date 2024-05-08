@@ -12,24 +12,53 @@ import java.time.LocalDate;
  * @author Acer
  */
 public class App {
- public static void main(String[] args) {
-        // Creazione di alcuni clienti
-        Cliente cliente1 = new Cliente("Mario", "Franzoni", 11, LocalDate.of(2024, 5, 1),100.0);
-        Cliente cliente2 = new Cliente("Paolo", "Croci", 102, LocalDate.of(2024, 5, 2), 500.0);
-        Cliente cliente3 = new Cliente("Angelo", "Croci", 10, LocalDate.of(2024, 5, 1), 304.1);
-
-        // Creazione di un oggetto Movimenti e aggiunta dei clienti
+    public static void main(String[] args) {
+        Cliente cliente1 = new Cliente("Mario", "Rossi", 1, LocalDate.now(), 1000.0);
+        Cliente cliente2 = new Cliente("Luigi", "Verdi", 2, LocalDate.now(), 1500.0);
         Movimenti movimenti = new Movimenti();
-        try {
-            movimenti.setMovimenti(cliente1, 0);
-            movimenti.setMovimenti(cliente2, 1);
-            movimenti.setMovimenti(cliente3, 2);
-        } catch (EccezionePosizioneNonValida e) {
-            System.out.println("Posizione non valida!");
+        movimenti.aggiungiMovimento(cliente1);
+        movimenti.aggiungiMovimento(cliente2);
+        System.out.println("Movimenti totali:");
+        for (int i = 0; i < movimenti.getNumMovimenti(); i++) {
+            try {
+                Cliente movimento = movimenti.getMovimenti(i);
+                System.out.println("Cliente: " + movimento.getNome() + " " + movimento.getCognome() +
+                                   " - Importo: " + movimento.getImporto());
+            } catch (EccezionePosizioneNonValida e) {
+                System.out.println("Errore: posizione non valida");
+            }
         }
+        LocalDate oggi = LocalDate.now();
+        movimenti.visualizzaMovimentiPerData(oggi);
+        movimenti.visualizzaMovimentiCliente(cliente1);
+        double saldo = movimenti.calcolaSaldo();
+        System.out.println("Saldo totale di tutti i movimenti: " + saldo);
+        double importoPrelievo = 200.0;
+        movimenti.preleva(cliente1, importoPrelievo);
+        saldo = movimenti.calcolaSaldo();
+        System.out.println("Saldo totale dopo il prelievo: " + saldo);
+        System.out.println("Movimenti totali dopo il prelievo:");
+        for (int i = 0; i < movimenti.getNumMovimenti(); i++) {
+            try {
+                Cliente movimento = movimenti.getMovimenti(i);
+                System.out.println("Cliente: " + movimento.getNome() + " " + movimento.getCognome() +
+                                   " - Importo: " + movimento.getImporto());
+            } catch (EccezionePosizioneNonValida e) {
+                System.out.println("Errore: posizione non valida");
+            }
+        }
+        System.out.println("Saldo per ciascun cliente:");
+        movimenti.visualizzaSaldoCliente(cliente1);
+        movimenti.visualizzaSaldoCliente(cliente2);
 
-        // Visualizzazione dei movimenti per una data specifica
-        LocalDate dataDaVisualizzare = LocalDate.of(2024, 5, 1);
-        movimenti.visualizzaMovimentiPerData(dataDaVisualizzare);
+        Cliente cliente3 = new Cliente("Mario", "Rossi", 1, LocalDate.now(), 1000.0);
+        Cliente cliente4 = new Cliente("Luigi", "Verdi", 2, LocalDate.now(), 500.0);
+
+        System.out.println("Saldo di Mario Rossi: " + movimenti.calcolaSaldo());
+
+        movimenti.bonifico(cliente3, cliente4, 200.0);
+
+        System.out.println("Saldo di Mario Rossi dopo bonifico: " + movimenti.calcolaSaldo());
+        System.out.println("Saldo di Luigi Verdi dopo bonifico: " + movimenti.calcolaSaldo());
     }
 }
