@@ -9,5 +9,5 @@ package eccezioni;
  * @author gian
  */
 public class EccezionePosizioneOccupata extends Exception{
-    
+     
 }

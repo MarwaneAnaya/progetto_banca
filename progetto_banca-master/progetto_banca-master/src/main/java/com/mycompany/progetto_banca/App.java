@@ -11,7 +11,7 @@ import java.time.LocalDate;
  *
  * @author Acer
  */
-public class App {
+public class App { 
     public static void main(String[] args) {
         Cliente cliente1 = new Cliente("Mario", "Rossi", 1, LocalDate.now(), 1000.0);
         Cliente cliente2 = new Cliente("Luigi", "Verdi", 2, LocalDate.now(), 1500.0);
